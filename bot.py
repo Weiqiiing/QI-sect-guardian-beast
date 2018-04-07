@@ -106,5 +106,5 @@ async def on_message(message):
         await bot.process_commands(message)
     except:
         pass
-bot.run("")
+bot.run(process.end.BOT_TOKEN)
 #Made by Weiqing#2360 & Perpetual Phoenix#0363
