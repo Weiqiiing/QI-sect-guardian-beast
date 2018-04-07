@@ -23,7 +23,7 @@ def download_file(file_to,file_from):
 def upload_file(file_from, file_to):
     dbx = dropbox.Dropbox(DROXBOX_TOKEN)
     f = open(file_from, 'rb')
-    dbx.files_upload(f.read(), file_to)
+    dbx.files_upload(f.read(), file_to,mode=dropbox.files.WriteMode.overwrite)
 
 download_file("levels.csv","/levels.csv")
 download_file("sectlevels.csv","/sectlevels.csv")
