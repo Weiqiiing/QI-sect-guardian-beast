@@ -3,6 +3,7 @@ import discord,asyncio,time,csv,random,datetime,os,dropbox
 from discord.ext import commands
 from discord.ext.commands import Bot
 
+
 xpban=[[""] * 2 for i in range(1)]
 
 sectList = ["Autarch Flipping","Explosion","Blank"]              #ADD NEW SECTS HERE
@@ -15,19 +16,22 @@ requiredXP = [ 5000,7000,8000,10000,15000,20000,25000,30000,35000,400000,45000,5
 
 
 def download_file(file_to,file_from):
-    dbx = dropbox.Dropbox(DROPBOX_TOKEN)
+    dbx = dropbox.Dropbox(os.environ['DROPBOX_TOKEN'])
     f = open(file_to,"w")                    
     metadata,res = dbx.files_download(file_from)
     f.write(str(res.content)[2:-1])
     f.close()
     
 def upload_file(file_from, file_to):
-    dbx = dropbox.Dropbox(DROXBOX_TOKEN)
+    dbx = dropbox.Dropbox(os.environ['DROPBOX_TOKEN']) #DROXBOX_TOKEN
     f = open(file_from, 'rb')
     dbx.files_upload(f.read(), file_to,mode=dropbox.files.WriteMode.overwrite)
+    f.close()
 
+    
 download_file("levels.csv","/levels.csv")
 download_file("sectlevels.csv","/sectlevels.csv")
+
 
 
 with open("levels.csv", "r+") as sectLevels:        #Grab all XP levels from levels.csv due to startup/restart
@@ -45,6 +49,7 @@ with open("sectLevels.csv", "r+") as trueLevel:        #Grab all true levels fro
     trueLevel.close()
 
 async def second_timer(): ##will be our xp timer
+    secondChecker = 0
     while True:
         global a
         a = datetime.datetime.now()
@@ -52,11 +57,11 @@ async def second_timer(): ##will be our xp timer
         for timeCheck in xpban:
             if a.second in timeCheck:
                 del xpban[0]
-                
+
         if a.second == 0:
             secondChecker +=1
-            print(secondChecker,"/5")
-            if secondChecker == 5:
+            print(secondChecker,"/1")
+            if secondChecker == 1:
                 secondChecker = 0
                 upload_file("levels.csv","/levels.csv")
                 upload_file("sectlevels.csv","/sectlevels.csv")
