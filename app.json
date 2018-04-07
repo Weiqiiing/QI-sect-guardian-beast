@@ -1,0 +1,24 @@
+{
+  "name": "QI-sect-guardian-beast",
+  "description": "test",
+  "scripts": {
+  },
+  "env": {
+    "BOT_TOKEN": {
+      "required": true
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
