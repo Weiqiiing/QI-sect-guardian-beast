@@ -106,5 +106,5 @@ async def on_message(message):
         await bot.process_commands(message)
     except:
         pass
-bot.run(os.environ['BOT_TOKEN'])
+bot.run(os.environ['BOT_TOK-EN'])
 #Made by Weiqing#2360 & Perpetual Phoenix#0363
