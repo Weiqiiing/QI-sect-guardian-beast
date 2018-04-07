@@ -8,7 +8,10 @@ file = open("testfile.txt","r")
 f = file.read()
 file.close()
 
-
+async def on_ready():   #when bot is ready will print on a new line, and change bot playing status
+    
+    print("_____________________\nSect XP Tracking On")
+    await bot.change_presence(game=discord.Game(name="Tracking"))
 
 @bot.command(pass_context=True)
 async def x(ctx):
