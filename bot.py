@@ -10,7 +10,7 @@ sectOwner = ["Perpetual Phoenix#0363", "Megumin_Explosion#9614", "Storm#6666"]
 
 sectXP = list() #create empty xp list                                       When creating a new sect, make sure to add ", 0" to the end of level.csv. Same with sectLevels
 trueSectLevel = list() #create empty level list                               This will allow it to start tracking xp for that sect without errors
-requiredXP = [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,20000,50000,100000]
+requiredXP = [5000,7000,8000,10000,15000,20000,25000,30000,35000,400000,45000,50000,55000]
 
 with open("levels.csv", "r+") as sectLevels:        #Grab all XP levels from levels.csv due to startup/restart
     reader = csv.reader(sectLevels)
