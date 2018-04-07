@@ -1,4 +1,4 @@
-import discord,asyncio,time,csv,random,datetime
+import discord,asyncio,time,csv,random,datetime,os
 from discord.ext import commands
 from discord.ext.commands import Bot
 
@@ -106,5 +106,5 @@ async def on_message(message):
         await bot.process_commands(message)
     except:
         pass
-bot.run(process.end.BOT_TOKEN)
+bot.run(os.environ['BOT_TOKEN'])
 #Made by Weiqing#2360 & Perpetual Phoenix#0363
