@@ -55,7 +55,7 @@ async def second_timer(): ##will be our xp timer
         if a.second == 0:
             secondChecker +=1
             print(secondChecker,"/5")
-            if secondChecker == 5
+            if secondChecker == 5:
                 secondChecker = 0
                 upload_file("levels.csv","/levels.csv")
                 upload_file("sectlevels.csv","/sectlevels.csv")
