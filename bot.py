@@ -8,7 +8,7 @@ xpban=[[""] * 2 for i in range(1)]
 
 sectList = ["Autarch Flipping","Explosion","Blank"]              #ADD NEW SECTS HERE
 sectTags = ["「 ELON 」","Explosion","『　　』"]                  #ADD NEW TAGS HERE
-sectOwner = ["Perpetual Phoenix#0363", "Megumin_Explosion#9614", "Storm#6666"]
+sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Storm"]
 
 sectXP = list() #create empty xp list                                       When creating a new sect, make sure to add ", 0" to the end of level.csv. Same with sectLevels
 trueSectLevel = list() #create empty level list                               This will allow it to start tracking xp for that sect without errors
@@ -60,7 +60,7 @@ async def second_timer(): ##will be our xp timer
 
         if a.second == 0:
             secondChecker +=1
-            if secondChecker == 5:
+            if secondChecker == 3:
                 secondChecker = 0
                 upload_file("levels.csv","/levels.csv")
                 upload_file("sectlevels.csv","/sectlevels.csv")
