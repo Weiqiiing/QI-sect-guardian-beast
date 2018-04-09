@@ -14,6 +14,11 @@ sectXP = list() #create empty xp list                                       When
 trueSectLevel = list() #create empty level list                               This will allow it to start tracking xp for that sect without errors
 requiredXP = [ 5000,7000,8000,10000,15000,20000,25000,30000,35000,400000,45000,50000,55000]
 
+ids = ["429006908947693569",
+       "429007516597354516","429007749641273364",
+       "429007865588613120","429007998019698689",
+       "429009296483680266","429009454202224640"]
+	   
 
 def download_file(file_to,file_from):
     dbx = dropbox.Dropbox(os.environ['DROPBOX_TOKEN'])
@@ -89,53 +94,65 @@ async def sects(ctx):
 #      
 @bot.event
 async def on_message(message):
-    try:
-        global xpban,a
-        located = False
+    allowedXP = False
 
-        search = message.author.id
-        for idCheck in xpban:
-            if search in idCheck:
-                located = True
+    for checkID in range(len(ids)):
+        if "426426481581752320" == message.author.id:
+            break
+        elif ids[checkID] in [y.id for y in message.author.roles]:
+            allowedXP= True
+            break
 
-        if ".!sects" in message.content:
-            pass
-        
-        elif message.author.nick is None or located == True:
-            pass
-        
-        else:    
-            xpban +=[[""] * 2 for i in range(1)]
-            xpban[len(xpban)-2][0] = (message.author.id)
-            xpban[len(xpban)-2][1] = (a.second)
+    if allowedXP == True:
+            
+        try:
+            global xpban,a
+            located = False
+
+            search = message.author.id
+            for idCheck in xpban:
+                if search in idCheck:
+                    located = True
+
+            if ".!sects" in message.content:
+                pass
+            
+            elif message.author.nick is None or located == True:
+                pass
 
             
-            for findTag in range(len(sectTags)):
-                if sectTags[findTag].upper() in message.author.nick.upper() :                    
-                            sectXP[findTag] += random.randint(2,5)    #set xp
-                            print(str(sectList[findTag])+" = "+str(sectXP[findTag])+"xp")
-                            
-            for xpCheck in range(len(sectList)):
-                if sectXP[xpCheck] >= requiredXP[trueSectLevel[xpCheck]]:
-                    sectXP[xpCheck] = 0
-                    trueSectLevel[xpCheck] +=1
-                    await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
-                    await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
-                    
-            lev = open('sectLevels.csv', 'w')
-            xplev = open('levels.csv', 'w')
-            for allSects in range(len(sectList)):
-                lev.write(str(trueSectLevel[allSects]))
-                xplev.write(str(sectXP[allSects]))
-                if allSects != len(sectList)-1:
-                    lev.write(",")
-                    xplev.write(",")
-            lev.close()
-            xplev.close()
+            else:
+                xpban +=[[""] * 2 for i in range(1)]
+                xpban[len(xpban)-2][0] = (message.author.id)
+                xpban[len(xpban)-2][1] = (a.second)
 
-        await bot.process_commands(message)
-    except:
-        pass
+                
+                for findTag in range(len(sectTags)):
+                    if sectTags[findTag].upper() in message.author.nick.upper() :                    
+                                sectXP[findTag] += random.randint(2,5)    #set xp
+                                print(str(sectList[findTag])+" = "+str(sectXP[findTag])+"xp")
+                                
+                for xpCheck in range(len(sectList)):
+                    if sectXP[xpCheck] >= requiredXP[trueSectLevel[xpCheck]]:
+                        sectXP[xpCheck] = 0
+                        trueSectLevel[xpCheck] +=1
+                        await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
+                        await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
+                        
+                lev = open('sectLevels.csv', 'w')
+                xplev = open('levels.csv', 'w')
+                for allSects in range(len(sectList)):
+                    lev.write(str(trueSectLevel[allSects]))
+                    xplev.write(str(sectXP[allSects]))
+                    if allSects != len(sectList)-1:
+                        lev.write(",")
+                        xplev.write(",")
+                lev.close()
+                xplev.close()
+
+            await bot.process_commands(message)
+        except:
+            pass
 
 bot.run(os.environ['BOT_TOKEN'])
   #Made by Weiqing#2360 & Perpetual Phoenix#0363
