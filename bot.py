@@ -95,8 +95,8 @@ async def sects(ctx, arg):
         await bot.say(embed=embed,delete_after=10)
 
     elif argCh == "h" or arg == "h":
-        embed=discord.Embed(description="```Usage:\n.!sect <searchtag>\n\nSearchtags Available:\nElon\nExp\nBlank\n\nAlternatively, you can use 'a' to display all of them```",color=0x31c7ce)
-        await bot.say(embed=embed, delete_after=10)
+        embed=discord.Embed(description="```Usages:\n.!sects <search tag> - display tagged sect\n\nSearch tags available:\nElon, Exp, Blank\n\n.!sects a - display all sects\n.!sects lb display sect leaderboard```",color=0x31c7ce)
+        await bot.say(embed=embed, delete_after=20)
 
         
     elif arg == "a":
