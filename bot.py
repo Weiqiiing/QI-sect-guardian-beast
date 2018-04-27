@@ -165,5 +165,30 @@ async def on_message(message):
     except:
         pass
 
+@bot.command(pass_context=True)
+async def lb(ctx):
+    tempName = list(sectList) 
+    tempXP = list(sectXP)
+    for xptotal in range(len(sectXP)):
+        for getxp in range(trueSectLevel[xptotal]):
+            tempXP[xptotal] += requiredXP[getxp]
+
+    for i in range(len(tempXP)-1):
+       if tempXP[i]<tempXP[i+1]:
+                temp = tempXP[i]
+                temp2 = tempName[i]
+                tempXP[i] = tempXP[i+1]
+                tempName[i] = tempName[i+1]
+                tempXP[i+1] = temp
+                tempName[i+1] = temp2
+
+    embed=discord.Embed(color=0xabcdef)
+    embed.set_author(name="Leaderboard")
+
+    for i in range(len(tempName)):
+        if i != len(tempName):
+            embed.add_field(name="#"+str(i+1)+" "+tempName[i], value=str(tempXP[i]), inline=False)
+    await bot.say(embed=embed,delete_after=10)
+
 bot.run(os.environ['BOT_TOKEN'])
   #Made by Weiqing#2360 & Perpetual Phoenix#0363
