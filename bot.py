@@ -5,9 +5,9 @@ from discord.ext.commands import Bot
 
 xpban=[[""] * 2 for i in range(1)]
 
-sectList = ["Autarch Flipping","Explosion","Blank"]              #ADD NEW SECTS HERE
+sectList = ["Autarch Flipping [ELON]","Explosion [Exp]","Blank [Blank]""]              #ADD NEW SECTS HERE
 sectTags = ["「 ELON 」","Explosion","『　　』"]                  #ADD NEW TAGS HERE
-sectOwner = ["Perpetual Phoenix#0363", "Megumin_Explosion#9614", "Storm#6666"]
+sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Storm"]
 
 sectXP = list() #create empty xp list                                       When creating a new sect, make sure to add ", 0" to the end of level.csv. Same with sectLevels
 trueSectLevel = list() #create empty level list                               This will allow it to start tracking xp for that sect without errors
@@ -90,11 +90,11 @@ async def sects(ctx, arg):
         embed.add_field(name="Leader", value=str(sectOwner[argCh]))
         embed.add_field(name="Level", value=str(trueSectLevel[argCh]+1))
         embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[argCh]] - sectXP[argCh])+"xp ("+str(requiredXP[trueSectLevel[argCh]])+")")
-        await bot.say(embed=embed,delete_after=10)
+        await bot.say(embed=embed,delete_after=15)
 
     elif argCh == "h" or arg == "h":
         embed=discord.Embed(description="```Usage:\n.!sect <searchtag>\n\nSearchtags Available:\nElon\nExp\nBlank\n\nAlternatively, you can use 'a' to display all of them```",color=0x31c7ce)
-        await bot.say(embed=embed, delete_after=10)
+        await bot.say(embed=embed, delete_after=20)
 
         
     elif arg == "a":
@@ -104,7 +104,7 @@ async def sects(ctx, arg):
             embed.add_field(name="Leader", value=str(sectOwner[printOut]))
             embed.add_field(name="Level", value=str(trueSectLevel[printOut]+1))
             embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[printOut]] - sectXP[printOut])+"xp ("+str(requiredXP[trueSectLevel[printOut]])+")")
-            await bot.say(embed=embed,delete_after=10)
+            await bot.say(embed=embed,delete_after=20)
 
 @bot.event
 async def on_command_error(error, ctx):
@@ -112,12 +112,12 @@ async def on_command_error(error, ctx):
         embed=discord.Embed(description="```Invalid argument!\nTry using .!sects help```",color=0x31c7ce)
 
         msg = await bot.send_message(ctx.message.channel, embed=embed)
-        await asyncio.sleep(10)
+        await asyncio.sleep(20)
         await bot.delete_message(msg) 
 
 @bot.command(pass_context=True)
 async def about(ctx):
-    await bot.say("This bot was made by `Weiqing#2360` and had help from `Perpetual Phoenix#0363`.\nAny questions or want to suggest something? Feel free to dm us",delete_after=20)
+    await bot.say("This bot was made by `Weiqing#2360` and had help from `Perpetual Phoenix#0363`.\nAny questions or want to suggest something? Feel free to dm us",delete_after=30)
     
 @bot.event
 async def on_message(message):
