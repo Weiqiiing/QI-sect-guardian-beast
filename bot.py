@@ -77,14 +77,49 @@ async def on_ready():   #when bot is ready will print on a new line, and change 
 
 @bot.command(pass_context=True)
 
-async def sects(ctx):
-    for printOut in range(len(sectList)):
+@bot.command(pass_context=True)
+async def sects(ctx, arg):
+    
+    argCh = "na"
+    if arg.lower() == "elon":argCh=0
+    elif arg.lower() == "exp":argCh=1
+    elif arg.lower() == "blank":argCh=2
+    elif arg.lower() == "help":argCh="h"
+
+    if argCh != "na" and argCh != "h":
         embed=discord.Embed(color=0xabcdef)
-        embed.set_author(name=str(sectList[printOut]))
-        embed.add_field(name="Leader", value=str(sectOwner[printOut]))
-        embed.add_field(name="Level", value=str(trueSectLevel[printOut]+1))
-        embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[printOut]] - sectXP[printOut])+"xp ("+str(requiredXP[trueSectLevel[printOut]])+")")
-        await bot.send_message(ctx.message.server.get_member(ctx.message.author.id), embed=embed) 
+        embed.set_author(name=str(sectList[argCh]))
+        embed.add_field(name="Leader", value=str(sectOwner[argCh]))
+        embed.add_field(name="Level", value=str(trueSectLevel[argCh]+1))
+        embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[argCh]] - sectXP[argCh])+"xp ("+str(requiredXP[trueSectLevel[argCh]])+")")
+        await bot.say(embed=embed,delete_after=10)
+
+    elif argCh == "h" or arg == "h":
+        embed=discord.Embed(description="```Usage:\n.!sect <searchtag>\n\nSearchtags Available:\nElon\nExp\nBlank\n\nAlternatively, you can use 'a' to display all of them```",color=0x31c7ce)
+        await bot.say(embed=embed, delete_after=10)
+
+        
+    elif arg == "a":
+        for printOut in range(len(sectList)):
+            embed=discord.Embed(color=0xabcdef)
+            embed.set_author(name=str(sectList[printOut]))
+            embed.add_field(name="Leader", value=str(sectOwner[printOut]))
+            embed.add_field(name="Level", value=str(trueSectLevel[printOut]+1))
+            embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[printOut]] - sectXP[printOut])+"xp ("+str(requiredXP[trueSectLevel[printOut]])+")")
+            await bot.say(embed=embed,delete_after=10)
+
+@bot.event
+async def on_command_error(error, ctx):
+    if isinstance(error, commands.MissingRequiredArgument):
+        embed=discord.Embed(description="```Invalid argument!\nTry using .!sects help```",color=0x31c7ce)
+
+        msg = await bot.send_message(ctx.message.channel, embed=embed)
+        await asyncio.sleep(10)
+        await bot.delete_message(msg) 
+
+@bot.command(pass_context=True)
+async def about(ctx):
+    await bot.say("This bot was made by `Weiqing#2360` and had help from `Perpetual Phoenix#0363`.\nAny questions or want to suggest something? Feel free to dm us",delete_after=20)
     
 @bot.event
 async def on_message(message):
