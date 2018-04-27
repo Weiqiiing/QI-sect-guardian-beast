@@ -188,7 +188,7 @@ async def lb(ctx):
     for i in range(len(tempName)):
         if i != len(tempName):
             embed.add_field(name="#"+str(i+1)+" "+tempName[i], value=str(tempXP[i]), inline=False)
-    await bot.say(embed=embed,delete_after=10)
+    await bot.say(embed=embed,delete_after=20)
 
 bot.run(os.environ['BOT_TOKEN'])
   #Made by Weiqing#2360 & Perpetual Phoenix#0363
