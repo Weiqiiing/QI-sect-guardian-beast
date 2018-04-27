@@ -83,27 +83,57 @@ async def sects(ctx, arg):
     elif arg.lower() == "exp":argCh=1
     elif arg.lower() == "blank":argCh=2
     elif arg.lower() == "help":argCh="h"
+    elif arg.lower() == "lb":argCh="l"
 
-    if argCh != "na" and argCh != "h":
+    if argCh != "na" and argCh != "h" and argCh != "l":
         embed=discord.Embed(color=0xabcdef)
         embed.set_author(name=str(sectList[argCh]))
         embed.add_field(name="Leader", value=str(sectOwner[argCh]))
-        embed.add_field(name="Level", value=str(trueSectLevel[argCh]+1))
         embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[argCh]] - sectXP[argCh])+"xp ("+str(requiredXP[trueSectLevel[argCh]])+")")
-        await bot.say(embed=embed,delete_after=15)
+        embed.add_field(name="Level", value=str(trueSectLevel[argCh]+1))
+        
+        await bot.say(embed=embed,delete_after=10)
 
     elif argCh == "h" or arg == "h":
         embed=discord.Embed(description="```Usage:\n.!sect <searchtag>\n\nSearchtags Available:\nElon\nExp\nBlank\n\nAlternatively, you can use 'a' to display all of them```",color=0x31c7ce)
-        await bot.say(embed=embed, delete_after=20)
+        await bot.say(embed=embed, delete_after=10)
 
         
     elif arg == "a":
-        for printOut in range(len(sectList)):
             embed=discord.Embed(color=0xabcdef)
-            embed.set_author(name=str(sectList[printOut]))
-            embed.add_field(name="Leader", value=str(sectOwner[printOut]))
-            embed.add_field(name="Level", value=str(trueSectLevel[printOut]+1))
-            embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[printOut]] - sectXP[printOut])+"xp ("+str(requiredXP[trueSectLevel[printOut]])+")")
+            embed.set_author(name="Sects")
+            for printOut in range(len(sectList)):
+                    
+                    embed.add_field(name=str(sectList[printOut]), value="Lead by "+ sectOwner[printOut],inline=False)
+                    embed.add_field(name="Level", value=str(trueSectLevel[printOut]+1))
+                    embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[printOut]] - sectXP[printOut])+"xp ("+str(requiredXP[trueSectLevel[printOut]])+")")
+
+                    if printOut != len(sectList)-1:
+                        embed.add_field(name="\u200b", value="\u200b",inline=False)
+
+            await bot.say(embed=embed,delete_after=25)
+    elif argCh == "l":
+            tempName = list(sectList) 
+            tempXP = list(sectXP)
+            for xptotal in range(len(sectXP)):
+                for getxp in range(trueSectLevel[xptotal]):
+                    tempXP[xptotal] += requiredXP[getxp]
+
+            for i in range(len(tempXP)-1):
+               if tempXP[i]<tempXP[i+1]:
+                        temp = tempXP[i]
+                        temp2 = tempName[i]
+                        tempXP[i] = tempXP[i+1]
+                        tempName[i] = tempName[i+1]
+                        tempXP[i+1] = temp
+                        tempName[i+1] = temp2
+
+            embed=discord.Embed(color=0xabcdef)
+            embed.set_author(name="Leaderboard")
+
+            for i in range(len(tempName)):
+                if i != len(tempName):
+                    embed.add_field(name="#"+str(i+1)+" "+tempName[i], value=str(tempXP[i]), inline=False)
             await bot.say(embed=embed,delete_after=20)
 
 @bot.event
@@ -165,30 +195,6 @@ async def on_message(message):
     except:
         pass
 
-@bot.command(pass_context=True)
-async def lb(ctx):
-    tempName = list(sectList) 
-    tempXP = list(sectXP)
-    for xptotal in range(len(sectXP)):
-        for getxp in range(trueSectLevel[xptotal]):
-            tempXP[xptotal] += requiredXP[getxp]
-
-    for i in range(len(tempXP)-1):
-       if tempXP[i]<tempXP[i+1]:
-                temp = tempXP[i]
-                temp2 = tempName[i]
-                tempXP[i] = tempXP[i+1]
-                tempName[i] = tempName[i+1]
-                tempXP[i+1] = temp
-                tempName[i+1] = temp2
-
-    embed=discord.Embed(color=0xabcdef)
-    embed.set_author(name="Leaderboard")
-
-    for i in range(len(tempName)):
-        if i != len(tempName):
-            embed.add_field(name="#"+str(i+1)+" "+tempName[i], value=str(tempXP[i]), inline=False)
-    await bot.say(embed=embed,delete_after=20)
 
 bot.run(os.environ['BOT_TOKEN'])
   #Made by Weiqing#2360 & Perpetual Phoenix#0363
