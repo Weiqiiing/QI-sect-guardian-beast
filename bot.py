@@ -5,7 +5,7 @@ from discord.ext.commands import Bot
 
 xpban=[[""] * 2 for i in range(1)]
 
-sectList = ["Autarch Flipping [ELON]","Explosion [Exp]","Blank [Blank]","Thousand and One Petals [Petals]"]              #ADD NEW SECTS HERE
+sectList = ["Autarch Flipping [ELON]","Explosion [Exp]","Blank [Blank]","Thousand and One Petals [PETALS]"]              #ADD NEW SECTS HERE
 sectTags = ["「 ELON 」","Explosion","『　　』","《 PETALS 》"]                  #ADD NEW TAGS HERE
 sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Storm","Ziyun"]
 
