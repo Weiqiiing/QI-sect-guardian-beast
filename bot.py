@@ -151,50 +151,53 @@ async def about(ctx):
     
 @bot.event
 async def on_message(message):
-    try:
-        global xpban,a
-        located = False
-
-        search = message.author.id
-        for idCheck in xpban:
-            if search in idCheck:
-                located = True
-        if message.author.nick is None or located == True:
-            pass
-        
-        else:    
-            xpban +=[[""] * 2 for i in range(1)]
-            xpban[len(xpban)-2][0] = (message.author.id)
-            xpban[len(xpban)-2][1] = (a.second)
-
-            
-            for findTag in range(len(sectTags)):
-                if sectTags[findTag].upper() in message.author.nick.upper() :                    
-                            sectXP[findTag] += random.randint(2,5)    #set xp
-                            print(str(sectList[findTag])+" = "+str(sectXP[findTag])+"xp")
-                            
-            for xpCheck in range(len(sectList)):
-                if sectXP[xpCheck] >= requiredXP[trueSectLevel[xpCheck]]:
-                    sectXP[xpCheck] = 0
-                    trueSectLevel[xpCheck] +=1
-                    await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
-                    await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
-                    
-            lev = open('sectLevels.csv', 'w')
-            xplev = open('levels.csv', 'w')
-            for allSects in range(len(sectList)):
-                lev.write(str(trueSectLevel[allSects]))
-                xplev.write(str(sectXP[allSects]))
-                if allSects != len(sectList)-1:
-                    lev.write(",")
-                    xplev.write(",")
-            lev.close()
-            xplev.close()
-
-        await bot.process_commands(message)
-    except:
+    if message.channel.id == "326959934187110402":
         pass
+    else:
+        try:
+            global xpban,a
+            located = False
 
+            search = message.author.id
+            for idCheck in xpban:
+                if search in idCheck:
+                    located = True
+            if message.author.nick is None or located == True:
+                pass
+
+            else:    
+                xpban +=[[""] * 2 for i in range(1)]
+                xpban[len(xpban)-2][0] = (message.author.id)
+                xpban[len(xpban)-2][1] = (a.second)
+
+
+                for findTag in range(len(sectTags)):
+                    if sectTags[findTag].upper() in message.author.nick.upper() :                    
+                                sectXP[findTag] += random.randint(2,5)    #set xp
+                                print(str(sectList[findTag])+" = "+str(sectXP[findTag])+"xp")
+
+                for xpCheck in range(len(sectList)):
+                    if sectXP[xpCheck] >= requiredXP[trueSectLevel[xpCheck]]:
+                        sectXP[xpCheck] = 0
+                        trueSectLevel[xpCheck] +=1
+                        await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
+                        await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
+
+                lev = open('sectLevels.csv', 'w')
+                xplev = open('levels.csv', 'w')
+                for allSects in range(len(sectList)):
+                    lev.write(str(trueSectLevel[allSects]))
+                    xplev.write(str(sectXP[allSects]))
+                    if allSects != len(sectList)-1:
+                        lev.write(",")
+                        xplev.write(",")
+                lev.close()
+                xplev.close()
+
+        except:
+            pass
+
+    await bot.process_commands(message)
 
 bot.run(os.environ['BOT_TOKEN'])
   #Made by Weiqing#2360 & Perpetual Phoenix#0363
