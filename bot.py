@@ -83,6 +83,7 @@ async def sects(ctx, arg):
     elif arg.lower() == "exp":argCh=1
     elif arg.lower() == "blank":argCh=2
     elif arg.lower() == "petals":argCh=3
+    elif arg.lower() == "teaparty":argCh=4
     elif arg.lower() == "help":argCh="h"
     elif arg.lower() == "lb":argCh="l"
 
