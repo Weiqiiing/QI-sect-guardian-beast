@@ -8,7 +8,8 @@ bot = commands.Bot(command_prefix=".!") #bot prefix
 
 xpban=[[""] * 2 for i in range(1)] # create a list for xp timer
 
-sectName, sectSearch, sectOwner, sectTag, sectLvl, sectXP = list(),list(),list(),list(),list(),list()     #create 6 lists
+sectName, sectSearch, sectOwner, sectLvl, sectXP = list(),list(),list(),list(),list()     #create 5 lists
+sectTag = ["『　　』","「 ELON 」","Explosion","《 PETALS 》","[TeaParty]"]
 
 requiredXP = [ 5000,7000,8000,10000,15000, #1-4
                    20000,25000,30000,35000, #5-8.. etc
@@ -36,9 +37,8 @@ with open("sects.csv", "r+", encoding='utf-8') as sectfile:    #Grab it all from
     for row in reader:    #run through each row
                 namesplit = row[0].split("[")
                 sectName.append(namesplit[0]),sectSearch.append(namesplit[1][:-1])
-                
-                sectOwner.append(row[1]), sectTag.append(row[2])
-                sectLvl.append(int(row[3])), sectXP.append(int(row[4]))
+              
+                sectOwner.append(row[1]), sectLvl.append(int(row[2])), sectXP.append(int(row[3]))
     sectfile.close()    #close file
 
 
