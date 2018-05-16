@@ -194,7 +194,7 @@ async def on_message(message):
                         await bot.send_message(message.channel,"***"+str(sectName[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
                         await bot.send_message(message.channel,"***"+str(sectName[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
 
-            rewritecsv = open('sects2.csv', 'w', encoding='utf-8')
+            rewritecsv = open('sects.csv', 'w', encoding='utf-8')
             for allSects in range(sectNumber):
                 rewritecsv.write(sectName[allSects]+"["+sectSearch[allSects]+"],"+sectOwner[allSects]+","+sectTag[allSects]+", "+str(sectLvl[allSects])+", "+str(sectXP[allSects])+"\n")
             rewritecsv.close()
