@@ -13,18 +13,6 @@ sectName, sectSearch, sectOwner, sectTag, sectLvl, sectXP = list(),list(),list()
 requiredXP = [ 5000,7000,8000,10000,15000, #1-4
                    20000,25000,30000,35000, #5-8.. etc
                    400000,45000,50000,55000] #required xp for the next level
-
-##open sects.csv file
-with open("sects.csv", "r+", encoding='utf-8') as sectfile:    #Grab it all from the file
-    reader = csv.reader(sectfile)
-    for row in reader:    #run through each row
-                namesplit = row[0].split("[")
-                sectName.append(namesplit[0]),sectSearch.append(namesplit[1][:-1])
-                
-                sectOwner.append(row[1]), sectTag.append(row[2])
-                sectLvl.append(int(row[3])), sectXP.append(int(row[4]))
-    sectfile.close()    #close file
-    
     
 def download_file(file_to,file_from):
     dbx = dropbox.Dropbox(os.environ['DROPBOX_TOKEN'])
@@ -42,7 +30,16 @@ def upload_file(file_from, file_to):
     
 download_file("sects.csv","/sects.csv") #download file from dbx if run or reset
 
-
+##open sects.csv file
+with open("sects.csv", "r+", encoding='utf-8') as sectfile:    #Grab it all from the file
+    reader = csv.reader(sectfile)
+    for row in reader:    #run through each row
+                namesplit = row[0].split("[")
+                sectName.append(namesplit[0]),sectSearch.append(namesplit[1][:-1])
+                
+                sectOwner.append(row[1]), sectTag.append(row[2])
+                sectLvl.append(int(row[3])), sectXP.append(int(row[4]))
+    sectfile.close()    #close file
 
 
 async def second_timer(): ##will be our xp timer
