@@ -96,11 +96,6 @@ async def sects(ctx, arg="a", arg2=0):
         
     elif arg.lower() == "a" and argCh == "na": #display all
 
-            rewritecsv = open('sects2.csv', 'w', encoding='utf-8')
-            for allSects in range(sectNumber):
-                rewritecsv.write(sectName[allSects]+"["+sectSearch[allSects]+"],"+sectOwner[allSects]+","+sectTag[allSects]+", "+str(sectLvl[allSects])+", "+str(sectXP[allSects])+"\n")
-            rewritecsv.close()
-
             tempName = list(sectName)
             tempOwner = list(sectOwner)
             tempLvl = list(sectLvl)
