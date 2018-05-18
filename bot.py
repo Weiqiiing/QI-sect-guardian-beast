@@ -5,9 +5,9 @@ from discord.ext.commands import Bot
 
 xpban=[[""] * 2 for i in range(1)]
 
-sectList = ["Autarch Flipping [ELON]","Explosion [Exp]","Blank [Blank]","Thousand and One Petals [PETALS]","Debauchery Tea Party [TeaParty]"]              #ADD NEW SECTS HERE
-sectTags = ["「 ELON 」","Explosion","『　　』","《 PETALS 》","[TeaParty]"]                  #ADD NEW TAGS HERE
-sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Storm","Ziyun","ZaChan"]
+sectList = ["Autarch Flipping [ELON]","Explosion [Exp]","Blank [Blank]","Thousand and One Petals [PETALS]","Debauchery Tea Party [TeaParty]","Sort Post A Massege [spam]"]              #ADD NEW SECTS HERE
+sectTags = ["「 ELON 」","Explosion","『　　』","《 PETALS 》","[TeaParty]","[spam]"]                  #ADD NEW TAGS HERE
+sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Storm","Ziyun","ZaChan","Leechie_PLOSION"]
 
 sectXP = list() #create empty xp list                                       When creating a new sect, make sure to add ", 0" to the end of level.csv. Same with sectLevels
 trueSectLevel = list() #create empty level list                               This will allow it to start tracking xp for that sect without errors
@@ -84,6 +84,7 @@ async def sects(ctx, arg):
     elif arg.lower() == "blank":argCh=2
     elif arg.lower() == "petals":argCh=3
     elif arg.lower() == "teaparty":argCh=4
+    elif arg.lower() == "spam":argCh=5
     elif arg.lower() == "help":argCh="h"
     elif arg.lower() == "lb":argCh="l"
 
