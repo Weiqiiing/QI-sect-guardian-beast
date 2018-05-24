@@ -13,7 +13,7 @@ sectDescription = ["ummm..\nsoon",  #Elon
                     "EXPlOSION that's all\nFounded by megumin", #Explosion
                     "Allowing knowledge to flow freely to one another, while not pondering over futile matters laying in conflict with the state of mind.\nBlank is the way your soul has to feel for proper understanding and mental fortitude.", #Blank
                     "NA", #Petals
-                    "NA", #Tea Party
+                    "Debauchery Tea Party is a relaxed sect that uses Alchemy Server as its base. We enjoy having various discussions on many topics, including Tea, Food, and poetry - encouraging members to enjoy life. We only ask that members respect each other and behave appropriately. Join us, we have cookies! :cookie:", #Tea Party
                     "NA", #Spam
                    ]
 					
