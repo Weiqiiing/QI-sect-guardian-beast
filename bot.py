@@ -104,7 +104,7 @@ async def sects(ctx, arg="lb"):
                         embed.add_field(name="Description", value=str(sectDescription[argCh]))
                         
                         
-                        await bot.say(embed=embed,delete_after=10)
+                        await bot.say(embed=embed,delete_after=25)
                         break
 
     if arg.lower() in ["h","help"]:
