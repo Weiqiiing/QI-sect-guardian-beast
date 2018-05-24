@@ -5,13 +5,22 @@ from discord.ext.commands import Bot
 
 xpban=[[""] * 2 for i in range(1)]
 
-sectList = ["Autarch Flipping [ELON]","Explosion [Exp]","Blank [Blank]","Thousand and One Petals [PETALS]","Debauchery Tea Party [TeaParty]","Sort Post A Massege [spam]"]              #ADD NEW SECTS HERE
-sectTags = ["「 ELON 」","Explosion","『　　』","《 PETALS 》","[TeaParty]","[spam]"]                  #ADD NEW TAGS HERE
-sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Storm","Ziyun","ZaChan","Leechie_PLOSION"]
+sectList = ["Autarch Flipping", "Explosion","Blank","Thousand and One Petals","Debauchery Tea Party","Sort Post A Massege"] #Name of Sect
+sectCall = ["ELON","Exp","Blank","PETALS","TeaParty","spam"] #call for .!sect <name>
+sectTags = ["「 ELON 」","Explosion","『　　』","《 PETALS 》","[TeaParty]","[spam]"] #Tag required for xp   
+sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Storm","Ziyun","ZaChan","Leechie_SPLOSION"] #Owner of Sect
+sectDescription = ["ummm..\nsoon",  #Elon
+                    "EXPlOSION that's all\nFounded by megumin", #Explosion
+                    "Allowing knowledge to flow freely to one another, while not pondering over futile matters laying in conflict with the state of mind.\nBlank is the way your soul has to feel for proper understanding and mental fortitude.", #Blank
+                    "NA", #Petals
+                    "NA", #Tea Party
+                    "NA", #Spam
+                   ]
+					
+sectXP = list() #create empty xp list
+sectLvl = list() #create empty level list 
 
-sectXP = list() #create empty xp list                                       When creating a new sect, make sure to add ", 0" to the end of level.csv. Same with sectLevels
-trueSectLevel = list() #create empty level list                               This will allow it to start tracking xp for that sect without errors
-requiredXP = [ 5000,7000,8000,10000,15000,20000,25000,30000,35000,400000,45000,50000,55000]
+requiredXP = [ 5000,7000,8000,10000,15000,20000,25000,30000,35000,400000,45000,50000,55000] #xp required for next level
 
 def download_file(file_to,file_from):
     dbx = dropbox.Dropbox(os.environ['DROPBOX_TOKEN'])
@@ -26,25 +35,27 @@ def upload_file(file_from, file_to):
     dbx.files_upload(f.read(), file_to,mode=dropbox.files.WriteMode.overwrite)
     f.close()
 
-    
+def openFile(fileName, openIn,listAdd):
+        with open(fileName, openIn) as fData:
+            reader = csv.reader(fData)
+            for row in reader:
+                for i in range(len(row)):
+                    listAdd.append(int(row[i]))
+        fData.close()
+        
+def writeFile(fileName, openIn,listWrite):
+        fData = open(fileName, openIn)
+        for allSects in range(len(sectCall)):
+            fData.write(str(listWrite[allSects]))
+            if allSects != len(sectCall)-1:
+                fData.write(",")
+        fData.close()
+        
 download_file("levels.csv","/levels.csv")
 download_file("sectLevels.csv","/sectLevels.csv")
-
-
-
-with open("levels.csv", "r+") as sectLevels:        #Grab all XP levels from levels.csv due to startup/restart
-    reader = csv.reader(sectLevels)
-    for row in reader:
-        for i in range(len(row)):
-            sectXP.append(int(row[i]))
-    sectLevels.close()
-
-with open("sectLevels.csv", "r+") as trueLevel:        #Grab all true levels from sectLevels.csv due to startup/restart
-    reader = csv.reader(trueLevel)
-    for row in reader:
-        for i in range(len(row)):
-            trueSectLevel.append(int(row[i]))
-    trueLevel.close()
+        
+openFile("levels.csv", "r+",sectXP)
+openFile("sectLevels.csv", "r+",sectLvl)
 
 async def second_timer(): ##will be our xp timer
     secondChecker = 0
@@ -61,98 +72,85 @@ async def second_timer(): ##will be our xp timer
             print(secondChecker,"/1")
             if secondChecker == 1:
                 secondChecker = 0
-                upload_file("levels.csv","/levels.csv")
-                upload_file("sectLevels.csv","/sectLevels.csv")
+                
                 
         await asyncio.sleep(1)
- 
+
+
 bot = commands.Bot(command_prefix=".!") #bot prefix
+	
 
 @bot.event  
 async def on_ready():   #when bot is ready will print on a new line, and change bot playing status
     
     print("_____________________\nSect XP Tracking On")
-    await bot.change_presence(game=discord.Game(name="Tracking Sect XP"))
+    await bot.change_presence(game=discord.Game(name="Sect Tracting. V3"))
     bot.loop.create_task(second_timer())
 
 @bot.command(pass_context=True)
-async def sects(ctx, arg):
+async def sects(ctx, arg="lb"):
     
-    argCh = "na"
-    if arg.lower() == "elon":argCh=0
-    elif arg.lower() == "exp":argCh=1
-    elif arg.lower() == "blank":argCh=2
-    elif arg.lower() == "petals":argCh=3
-    elif arg.lower() == "teaparty":argCh=4
-    elif arg.lower() == "spam":argCh=5
-    elif arg.lower() == "help":argCh="h"
-    elif arg.lower() == "lb":argCh="l"
+    if arg.lower() not in ["l","lb","h","help","a","hof"]:
+        for sects in sectCall: #check if arg in sects
+                if arg.lower() == sects.lower(): #make sure both compared are lowercase
+                        argCh = sectCall.index(sects) #set argCh to the index
+                        embed=discord.Embed(color=0x71cecb)
+                        embed.set_author(name=str(sectList[argCh]))
+                        embed.add_field(name="Leader", value=str(sectOwner[argCh]))
+                        embed.add_field(name="XP until Next level", value= str(requiredXP[sectLvl[argCh]] - sectXP[argCh])+"xp ("+str(requiredXP[sectLvl[argCh]])+")")
+                        embed.add_field(name="Level", value=str(sectLvl[argCh]+1))
+                        embed.add_field(name="Description", value=str(sectDescription[argCh]))
+                        
+                        
+                        await bot.say(embed=embed,delete_after=10)
+                        break
 
-    if argCh != "na" and argCh != "h" and argCh != "l":
-        embed=discord.Embed(color=0xabcdef)
-        embed.set_author(name=str(sectList[argCh]))
-        embed.add_field(name="Leader", value=str(sectOwner[argCh]))
-        embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[argCh]] - sectXP[argCh])+"xp ("+str(requiredXP[trueSectLevel[argCh]])+")")
-        embed.add_field(name="Level", value=str(trueSectLevel[argCh]+1))
+    if arg.lower() in ["h","help"]:
+        embed=discord.Embed(color=3447003)
+        embed.set_author(name="Usage")
+        embed.add_field(name="<.!sects a>", value="Redundant")
+        embed.add_field(name="<.!sects lb>", value="Display the sect leaderboard",inline=False)
+        embed.add_field(name="<.!sects hof>", value="Display the hall of fame",inline=False)
+        embed.add_field(name="<.!sects [search tag] >", value="Display tagged sects\n\u200b",inline=False)
+        embed.add_field(name="Search Tags",value=sectCall,inline=False)
         
-        await bot.say(embed=embed,delete_after=10)
 
-    elif argCh == "h" or arg == "h":
-        embed=discord.Embed(description="```Usages:\n.!sects <search tag> - display tagged sect\n\nSearch tags available:\nElon, Exp, Blank\n\n.!sects a - display all sects\n.!sects lb - display sect leaderboards\n.!about - about the bot```",color=0x31c7ce)
         await bot.say(embed=embed, delete_after=20)
 
         
     elif arg == "a":
             embed=discord.Embed(color=0xabcdef)
-            embed.set_author(name="Sects")
-            for printOut in range(len(sectList)):
-                    
-                    embed.add_field(name=str(sectList[printOut]), value="Lead by "+ sectOwner[printOut],inline=False)
-                    embed.add_field(name="Level", value=str(trueSectLevel[printOut]+1))
-                    embed.add_field(name="XP until Next level", value= str(requiredXP[trueSectLevel[printOut]] - sectXP[printOut])+"xp ("+str(requiredXP[trueSectLevel[printOut]])+")")
-
-                    if printOut != len(sectList)-1:
-                        embed.add_field(name="\u200b", value="\u200b",inline=False)
-
+            embed.set_author(name="Sects Info!")
+            embed.add_field(name="This command is no longer in use! Instead use <.!sects lb> or just <.!sects now!>", value="This change has been due to the fact as sects have grown, the command takes up the entire screen in #bot_commands. This is too much!",inline=False)
             await bot.say(embed=embed,delete_after=25)
-    elif argCh == "l":
+
+            
+    elif arg in ["l","lb"]:
             tempName = list(sectList) 
+            tempTag = list(sectCall)
+            tempXPC = list(sectXP)
             tempXP = list(sectXP)
+            tempLvl = list(sectLvl)
+            tempDesc = list(sectDescription)
+
             for xptotal in range(len(sectXP)):
-                for getxp in range(trueSectLevel[xptotal]):
+                for getxp in range(sectLvl[xptotal]):
                     tempXP[xptotal] += requiredXP[getxp]
 
-            for i in range(len(sectList)):
-                for i in range(len(tempXP)-1):
-                   if tempXP[i]<tempXP[i+1]:
-                            temp = tempXP[i]
-                            temp2 = tempName[i]
-                            tempXP[i] = tempXP[i+1]
-                            tempName[i] = tempName[i+1]
-                            tempXP[i+1] = temp
-                            tempName[i+1] = temp2
+            tempXP, tempName, tempXPC, tempLvl,tempTag,tempDesc = zip(*sorted(zip(tempXP,tempName,tempXPC,tempLvl,tempTag,tempDesc),reverse=True))
+            
 
-            embed=discord.Embed(color=0xabcdef)
+            embed=discord.Embed(color=0x896fc4)
             embed.set_author(name="Leaderboard")
 
             for i in range(len(tempName)):
-                if i != len(tempName):
-                    embed.add_field(name="#"+str(i+1)+" "+tempName[i], value=str(tempXP[i]), inline=False)
+                    embed.add_field(name="#"+str(i+1)+" "+tempName[i]+" ["+tempTag[i]+"]", value=str(tempXPC[i])+" / "+str(requiredXP[tempLvl[i]])+" ("+str(tempXP[i])+")",inline=False)
+
             await bot.say(embed=embed,delete_after=20)
 
-@bot.event
-async def on_command_error(error, ctx):
-    if isinstance(error, commands.MissingRequiredArgument):
-        embed=discord.Embed(description="```Invalid argument!\nTry using .!sects help```",color=0x31c7ce)
+    elif arg in ["hof"]: #TBD
+            pass
 
-        msg = await bot.send_message(ctx.message.channel, embed=embed)
-        await asyncio.sleep(20)
-        await bot.delete_message(msg) 
-
-@bot.command(pass_context=True)
-async def about(ctx):
-    await bot.say("This bot was made by `Weiqing#2360` and had help from `Perpetual Phoenix#0363`.\nAny questions or want to suggest something? Feel free to dm us",delete_after=30)
-    
 @bot.event
 async def on_message(message):
     if message.channel.id == "326959934187110402":
@@ -168,40 +166,31 @@ async def on_message(message):
                     located = True
             if message.author.nick is None or located == True:
                 pass
-
+            
             else:    
                 xpban +=[[""] * 2 for i in range(1)]
                 xpban[len(xpban)-2][0] = (message.author.id)
                 xpban[len(xpban)-2][1] = (a.second)
-
-
-                for findTag in range(len(sectTags)):
+    
+                
+                for findTag in range(len(sectCall)):
                     if sectTags[findTag].upper() in message.author.nick.upper() :                    
                                 sectXP[findTag] += random.randint(2,5)    #set xp
-                                print(str(sectList[findTag])+" = "+str(sectXP[findTag])+"xp")
+                                print(str(sectList[findTag])+" = "+str(sectXP[findTag])+"xp") 
+                                writeFile("levels.csv", "w", sectXP)
 
-                for xpCheck in range(len(sectList)):
-                    if sectXP[xpCheck] >= requiredXP[trueSectLevel[xpCheck]]:
+                                        
+                for xpCheck in range(len(sectCall)):
+                    if sectXP[xpCheck] >= requiredXP[sectLvl[xpCheck]]:
                         sectXP[xpCheck] = 0
-                        trueSectLevel[xpCheck] +=1
-                        await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
-                        await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
+                        sectLvl[xpCheck] +=1
+                        writeFile("sectLevels.csv", "w", sectLvl)
 
-                lev = open('sectLevels.csv', 'w')
-                xplev = open('levels.csv', 'w')
-                for allSects in range(len(sectList)):
-                    lev.write(str(trueSectLevel[allSects]))
-                    xplev.write(str(sectXP[allSects]))
-                    if allSects != len(sectList)-1:
-                        lev.write(",")
-                        xplev.write(",")
-                lev.close()
-                xplev.close()
-
+                        for i in range(2):
+                            await bot.send_message(message.channel,"***"+str(sectList[xpCheck])+" Sect has leveled up!*** :cake: :cake: :cake:")
+                
         except:
             pass
-
     await bot.process_commands(message)
-
 bot.run(os.environ['BOT_TOKEN'])
   #Made by Weiqing#2360 & Perpetual Phoenix#0363
