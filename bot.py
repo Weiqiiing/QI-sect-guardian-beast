@@ -9,7 +9,7 @@ sectList = ["Autarch Flipping", "Explosion","Blank","Thousand and One Petals","D
 sectCall = ["ELON","Exp","Blank","PETALS","TeaParty","spam"] #call for .!sect <name>
 sectTags = ["「 ELON 」","Explosion","『　　』","《 PETALS 》","[TeaParty]","[spam]"] #Tag required for xp   
 sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Storm","Ziyun","ZaChan","Leechie_SPLOSION"] #Owner of Sect
-sectDescription = ["ummm..\nsoon",  #Elon
+sectDescription = ["Listen, ye mortal of the finite realms, for We are the Autarchs that were present at the beginning, and shall be present at the end! We are the Holy Inheritors of Elon, transcendent of all other races! We have seen generations trickle by, in the river of history, yet remain unfettered by time! Those who proclaim themselves as people of power are nothing to Us, for there is no apex past Us! A force that rivals the Heavens! A force that has become the Heavens! Who dares claim to be our equal‽ ",  #Elon
                     "EXPlOSION that's all\nFounded by megumin", #Explosion
                     "Allowing knowledge to flow freely to one another, while not pondering over futile matters laying in conflict with the state of mind.\nBlank is the way your soul has to feel for proper understanding and mental fortitude.", #Blank
                     "NA", #Petals
