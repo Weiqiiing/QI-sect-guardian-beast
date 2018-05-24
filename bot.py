@@ -73,7 +73,9 @@ async def second_timer(): ##will be our xp timer
             if secondChecker == 1:
                 secondChecker = 0
                 
-                
+                upload_file("levels.csv","/levels.csv")
+                upload_file("sectLevels.csv","/sectLevels.csv")
+                               
         await asyncio.sleep(1)
 
 
