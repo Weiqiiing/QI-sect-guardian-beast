@@ -86,7 +86,7 @@ bot = commands.Bot(command_prefix=".!") #bot prefix
 async def on_ready():   #when bot is ready will print on a new line, and change bot playing status
     
     print("_____________________\nSect XP Tracking On")
-    await bot.change_presence(game=discord.Game(name="Sect Tracting. V3"))
+    await bot.change_presence(game=discord.Game(name="Sect Tracking. V3"))
     bot.loop.create_task(second_timer())
 
 @bot.command(pass_context=True)
