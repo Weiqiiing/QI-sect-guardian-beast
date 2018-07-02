@@ -20,7 +20,7 @@ sectDescription = ["Listen, ye mortal of the finite realms, for We are the Autar
 sectXP = list() #create empty xp list
 sectLvl = list() #create empty level list 
 
-requiredXP = [ 5000,7000,8000,10000,15000,20000,25000,30000,35000,400000,45000,50000,55000] #xp required for next level
+requiredXP = [ 5000,7000,8000,10000,15000,20000,25000,30000,35000,40000,45000,50000,55000] #xp required for next level
 
 def download_file(file_to,file_from):
     dbx = dropbox.Dropbox(os.environ['DROPBOX_TOKEN'])
@@ -86,7 +86,7 @@ bot = commands.Bot(command_prefix=".!") #bot prefix
 async def on_ready():   #when bot is ready will print on a new line, and change bot playing status
     
     print("_____________________\nSect XP Tracking On")
-    await bot.change_presence(game=discord.Game(name="Sect Tracking. V3"))
+    await bot.change_presence(game=discord.Game(name="Sect Tracking. V3.1"))
     bot.loop.create_task(second_timer())
 
 @bot.command(pass_context=True)
