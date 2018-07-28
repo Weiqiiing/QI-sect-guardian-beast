@@ -90,6 +90,9 @@ async def on_ready():   #when bot is ready will print on a new line, and change 
     bot.loop.create_task(second_timer())
 
 @bot.command(pass_context=True)
+async def millie(ctx):
+	await bot.say(ctx, "https://media.discordapp.net/attachments/292845974441951243/472856304386572289/c0c661b7d27d42e7bfbc628b3090ad73.png?width=520&height=585")
+@bot.command(pass_context=True)
 async def sects(ctx, arg="lb"):
     
     if arg.lower() not in ["l","lb","h","help","a","hof"]:
