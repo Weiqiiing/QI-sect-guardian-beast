@@ -91,7 +91,7 @@ async def on_ready():   #when bot is ready will print on a new line, and change 
 
 @bot.command(pass_context=True)
 async def millie(ctx):
-	await bot.send_message(ctx.channel,"https://media.discordapp.net/attachments/292845974441951243/472856304386572289/c0c661b7d27d42e7bfbc628b3090ad73.png?width=520&height=585")
+	await bot.send_message(ctx.channel,"https://cdn.discordapp.com/attachments/292845974441951243/472856304386572289/c0c661b7d27d42e7bfbc628b3090ad73.png")
 	
 @bot.command(pass_context=True)
 async def sects(ctx, arg="lb"):
