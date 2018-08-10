@@ -91,7 +91,6 @@ async def on_ready():   #when bot is ready will print on a new line, and change 
 
 @bot.command(pass_context=True)
 async def millie(ctx):
-    if ctx.message.channel.id == "292845974441951243":
         image = "https://i.imgur.com/rB2Kg6X.png"
         embed = discord.Embed()
         embed.set_image(url=image)
