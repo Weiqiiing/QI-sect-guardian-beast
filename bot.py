@@ -91,7 +91,12 @@ async def on_ready():   #when bot is ready will print on a new line, and change 
 
 @bot.command(pass_context=True)
 async def millie(ctx):
-	await bot.say("https://cdn.discordapp.com/attachments/292845974441951243/472856304386572289/c0c661b7d27d42e7bfbc628b3090ad73.png")
+    if ctx.message.channel.id == "292845974441951243":
+        image = "https://i.imgur.com/rB2Kg6X.png"
+        embed = discord.Embed()
+        embed.set_image(url=image)
+        await bot.say(embed=embed)
+	
 	
 @bot.command(pass_context=True)
 async def sects(ctx, arg="lb"):
