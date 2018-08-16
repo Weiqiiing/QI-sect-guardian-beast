@@ -15,7 +15,7 @@ sectDescription = ["Listen, ye mortal of the finite realms, for We are the Autar
                     "NA", #Petals
                     "Debauchery Tea Party is a relaxed sect that uses Alchemy Server as its base. We enjoy having various discussions on many topics, including Tea, Food, and poetry - encouraging members to enjoy life. We only ask that members respect each other and behave appropriately. Join us, we have cookies! :cookie:", #Tea Party
                     "=============================\n---------------------------------------------\nAll Hail [spam] Sect.\n\nWith level up. We gain power.\nWith power. We gain freedom.\nWith freedom. We gain boredom.\nWith boredom. We gain [spam].\n\nMember can come and can go\nBut [spam] sect is always there. \n can still there and can change.\nBut [spam] sect is alwasy exist.\nSect master can me or anyone.\nBut [spam] sect always our. \n\n----------------------------------------------\n==============================", #Spam
-		    "NA", #Lords
+		    "NA" #Lords
                    ]
 					
 sectXP = list() #create empty xp list
