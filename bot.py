@@ -5,10 +5,10 @@ from discord.ext.commands import Bot
 
 xpban=[[""] * 2 for i in range(1)]
 
-sectList = ["Autarch Flipping", "Explosion","Blank","Thousand and One Petals","Debauchery Tea Party","Sort Post A Massege", "Rising Peak","NOT A GAE"] #Name of Sect
-sectCall = ["ELON","Exp","Blank","PETALS","TeaParty","spam","Lord","gae"] #call for .!sect <name>
-sectTags = ["「 ELON 」","Explosion","『　　』","《 PETALS 》","[TeaParty]","[spam]","Lord","【GAE】"] #Tag required for xp   
-sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Storm","Ziyun","ZaChan","VANSTORM","Modsan","WitheringLeaf"] #Owner of Sect
+sectList = ["Autarch Flipping", "Explosion","Blank","Thousand and One Petals","Debauchery Tea Party","Sort Post A Massege", "Rising Peak","NOT A GAE","Pax Romana"] #Name of Sect
+sectCall = ["ELON","Exp","Blank","PETALS","TeaParty","spam","Lord","gae","sqpr"] #call for .!sect <name>
+sectTags = ["「 ELON 」","Explosion","『　　』","《 PETALS 》","[TeaParty]","[spam]","Lord","【GAE】","「ＳＰＱＲ」"] #Tag required for xp   
+sectOwner = ["Perpetual Phoenix", "Megumin_Explosion", "Weiqing","Ziyun","ZaChan","VANSTORM","Modsan","WitheringLeaf","Myriad_"] #Owner of Sect
 sectDescription = ["Listen, ye mortal of the finite realms, for We are the Autarchs that were present at the beginning, and shall be present at the end! We are the Holy Inheritors of Elon, transcendent of all other races! We have seen generations trickle by, in the river of history, yet remain unfettered by time! Those who proclaim themselves as people of power are nothing to Us, for there is no apex past Us! A force that rivals the Heavens! A force that has become the Heavens! Who dares claim to be our equal‽ ",  #Elon
                     "EXPlOSION that's all\nFounded by megumin", #Explosion
                     "I  am **thou**, thou art I... \nThou hast acquired a **new** vow.\n\nIt shall **become** the wings of rebellion that **breaketh** thy chains of captivity.\n\nWith the birth of the *BLANK* Persona, \nI have obtained the winds of **blessing** that shall lead to freedom and **new** power...\n\nAllowing knowledge to flow freely to one another, while not pondering over futile matters laying in conflict with the state of mind.\nBlank is the way your soul has to feel for proper understanding and mental fortitude.", #Blank
@@ -17,6 +17,7 @@ sectDescription = ["Listen, ye mortal of the finite realms, for We are the Autar
                     "=============================\n---------------------------------------------\nAll Hail [spam] Sect.\n\nWith level up. We gain power.\nWith power. We gain freedom.\nWith freedom. We gain boredom.\nWith boredom. We gain [spam].\n\nMember can come and can go\nBut [spam] sect is always there. \n can still there and can change.\nBut [spam] sect is alwasy exist.\nSect master can me or anyone.\nBut [spam] sect always our. \n\n----------------------------------------------\n==============================", #Spam
 		    "NA", #Lords
 		    "NA", #GAE 
+		    "NA", #SPQR
                    ]
 					
 sectXP = list() #create empty xp list
