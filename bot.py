@@ -88,8 +88,8 @@ bot = commands.Bot(command_prefix=".!") #bot prefix
 @bot.event  
 async def on_ready():   #when bot is ready will print on a new line, and change bot playing status
     
-    print("_____________________\nSect XP Tracking On")
-    await bot.change_presence(game=discord.Game(name="Sect Tracking. V3.1"))
+    print("_____________________\nSect XP Tracking On")    
+    await bot.change_presence(game=discord.Game(name="the Chat :shy:",type=3))
     bot.loop.create_task(second_timer())
 
 @bot.command(pass_context=True)
@@ -99,6 +99,38 @@ async def millie(ctx):
         embed.set_image(url=image)
         await bot.say(embed=embed)
 	
+@bot.command(pass_context=True)
+async def invite(ctx, user: discord.User):
+
+
+    inviteMsg = f"Hey {user.mention}! {ctx.message.author.mention} has invited you to join their sect. \n\n**Status: Pending**"
+    msg = await bot.send_message(ctx.message.channel,
+                                 inviteMsg)
+
+    reactions = ['✅', '❌']
+    for reaction in reactions:
+        await bot.add_reaction(msg, reaction)
+
+    try:
+        reaction, reactor = await bot.wait_for_reaction(['✅', '❌'], user=user, timeout=600, message=msg)
+    
+        if reaction.emoji == "✅":
+            reply = "Accepted"
+
+        elif reaction.emoji == "❌":
+            reply = "Rejected"
+            
+    except TypeError:
+        reply = "Timed Out"
+        
+    await bot.edit_message(msg, new_content=inviteMsg.replace("Pending", reply))
+    await bot.clear_reactions(msg)
+    await bot.send_message(ctx.message.author, f"{user} has {reply.lower()} your sect invite.")
+    await bot.send_message(bot.get_channel("477777298431672321"), f"{ctx.message.author.mention} has invited {user.mention} to their sect. | {reply}")
+
+    person = await bot.get_user_info("201401898941677577")
+    if reaction.emoji == "✅":
+        await bot.send_message(person, f"{user.mention} has accepted {ctx.message.author.mention}'s invite to their sect")
 	
 @bot.command(pass_context=True)
 async def sects(ctx, arg="lb"):
