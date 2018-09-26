@@ -129,10 +129,9 @@ async def invite(ctx, user: discord.User):
     await bot.clear_reactions(msg)
 
     jake = await bot.get_user_info("201401898941677577")	
-    phoenix = await bot.get_user_info("182148584412676096")
     if reaction.emoji == "✅":
-       await bot.send_message(jake, f"{user.mention} has accepted {ctx.message.author.mention}'s invite to their sect")
-	await bot.send_message(phoenix, f"{user.mention} has accepted {ctx.message.author.mention}'s invite to their sect")
+        await bot.send_message(jake, f"{user.mention} has accepted {ctx.message.author.mention}'s invite to their sect")
+	
 	
 @bot.command(pass_context=True)
 async def sects(ctx, arg="lb"):
