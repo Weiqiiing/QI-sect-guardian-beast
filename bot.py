@@ -130,7 +130,7 @@ async def invite(ctx, user: discord.User):
 
     jake = await bot.get_user_info("201401898941677577")	
     if reaction.emoji == "✅":
-        await bot.send_message(jake, f"{user.mention} has accepted {ctx.message.author.mention}'s invite to their sect")
+        await bot.send_message(jake, f"{user} has accepted {ctx.message.author}'s invite to their sect")
 	
 	
 @bot.command(pass_context=True)
