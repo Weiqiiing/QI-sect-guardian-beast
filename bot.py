@@ -126,7 +126,7 @@ async def invite(ctx, user: discord.User):
     await bot.edit_message(msg, new_content=inviteMsg.replace("Pending", reply))
 
     try:
-    	await bot.send_message(ctx.message.author, f"{user} has {reply.lower()} your sect invite.")
+	await bot.send_message(ctx.message.author, f"{user} has {reply.lower()} your sect invite.")
     except Exception:
 	print(f"{ctx.message.author} has blocked DMs")
 	
