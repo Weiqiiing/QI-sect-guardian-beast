@@ -124,7 +124,12 @@ async def invite(ctx, user: discord.User):
         reply = "Timed Out"
         
     await bot.edit_message(msg, new_content=inviteMsg.replace("Pending", reply))
-    await bot.send_message(ctx.message.author, f"{user} has {reply.lower()} your sect invite.")
+
+    try:
+    	await bot.send_message(ctx.message.author, f"{user} has {reply.lower()} your sect invite.")
+    except Exception:
+	print(f"{ctx.message.author} has blocked DMs")
+	
     await bot.send_message(bot.get_channel("477777298431672321"), f"{ctx.message.author.mention} has invited {user.mention} to their sect. | {reply}")
     await bot.clear_reactions(msg)
 
