@@ -130,7 +130,7 @@ async def invite(ctx, user: discord.User):
     except Exception:
     	print(f"{ctx.message.author} has blocked DMs")
 	
-    await bot.send_message(bot.get_channel("477777298431672321"), f"{ctx.message.author.mention} has invited {user.mention} to their sect. | {reply}")
+    await bot.send_message(bot.get_channel("477777298431672321"), f"{ctx.message.author} has invited {user} to their sect. | {reply}")
     await bot.clear_reactions(msg)
 
     jake = await bot.get_user_info("201401898941677577")	
