@@ -101,6 +101,7 @@ async def millie(ctx):
 	
 @bot.command(pass_context=True)
 async def invite(ctx, user: discord.User):
+    jake = await bot.get_user_info("201401898941677577")
 
 
     inviteMsg = f"Hey {user.mention}! {ctx.message.author.mention} has invited you to join their sect. \n\n**Status: Pending**"
@@ -116,7 +117,15 @@ async def invite(ctx, user: discord.User):
     
         if reaction.emoji == "✅":
             reply = "Accepted"
-
+            for i in range(len(sectTags)):
+                if sectTags[i] in ctx.message.author.display_name:
+                    try:
+                        if sectTags[i] == "Lord":await bot.change_nickname(user, sectTags[i]+" "+user.name)
+                        else:await bot.change_nickname(user, user.name+" "+sectTags[i])
+                        break
+                    except Exception:           
+                        await bot.send_message(jake, f"{user} has accepted {ctx.message.author}'s invite to their sect, however {user.name} is too long for a tag")
+                        
         elif reaction.emoji == "❌":
             reply = "Rejected"
             
@@ -124,18 +133,8 @@ async def invite(ctx, user: discord.User):
         reply = "Timed Out"
         
     await bot.edit_message(msg, new_content=inviteMsg.replace("Pending", reply))
-
-    try:	
-    	await bot.send_message(ctx.message.author, f"{user} has {reply.lower()} your sect invite.")
-    except Exception:
-    	print(f"{ctx.message.author} has blocked DMs")
-	
-    await bot.send_message(bot.get_channel("477777298431672321"), f"{ctx.message.author} has invited {user} to their sect. | {reply}")
+    await bot.send_message(ctx.message.author, f"{user} has {reply.lower()} your sect invite.")
     await bot.clear_reactions(msg)
-
-    jake = await bot.get_user_info("201401898941677577")	
-    if reaction.emoji == "✅":
-        await bot.send_message(jake, f"{user} has accepted {ctx.message.author}'s invite to their sect")
 	
 	
 @bot.command(pass_context=True)
