@@ -93,7 +93,7 @@ async def second_timer(): ##will be our xp timer
         await asyncio.sleep(1)
 
 
-bot = commands.Bot(command_prefix=".!") #bot prefix
+bot = commands.Bot(command_prefix=".") #bot prefix
 	
 
 @bot.event  
