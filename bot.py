@@ -29,7 +29,7 @@ usableRoles = [
                "Tentative Reader", "Shy Reader", "Librocubicularist", "Grumpy Reader",
                "Book Eater", "Seasonal Reader", "Trend Reader", "Moody Reader",
                "Practical Reader", "Slow Reader",
-               "Interested In Events"
+               "Interested in Events"
                        ]
 sectXP = list() #create empty xp list
 sectLvl = list() #create empty level list 
@@ -152,7 +152,7 @@ async def invite(ctx, user: discord.User):
 @bot.command(pass_context = True)
 async def addrole(ctx,*roleToAdd):
     roleToAdd = " ".join(roleToAdd)
-    if roleToAdd.title() in usableRoles:
+    if roleToAdd.title() in usableRoles or roleToAdd in usableRoles:
         currentRoles = [x.name for x in ctx.message.author.roles]
         if any(x in currentRoles for x in usableRoles):
             for i in range(len(usableRoles)-1):
