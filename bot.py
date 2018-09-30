@@ -29,7 +29,7 @@ usableRoles = [
                "Tentative Reader", "Shy Reader", "Librocubicularist", "Grumpy Reader",
                "Book Eater", "Seasonal Reader", "Trend Reader", "Moody Reader",
                "Practical Reader", "Slow Reader",
-               "Interested in Events"
+               "Interested In Events"
                        ]
 sectXP = list() #create empty xp list
 sectLvl = list() #create empty level list 
