@@ -234,10 +234,10 @@ async def sects(ctx, arg="lb"):
     if arg.lower() in ["h","help"]:
         embed=discord.Embed(color=3447003)
         embed.set_author(name="Usage")
-        embed.add_field(name="<.!sects a>", value="Redundant")
-        embed.add_field(name="<.!sects lb>", value="Display the sect leaderboard",inline=False)
-        embed.add_field(name="<.!sects hof>", value="Display the hall of fame",inline=False)
-        embed.add_field(name="<.!sects [search tag] >", value="Display tagged sects\n\u200b",inline=False)
+        embed.add_field(name="<.sects a>", value="Redundant")
+        embed.add_field(name="<.sects lb>", value="Display the sect leaderboard",inline=False)
+        embed.add_field(name="<.sects hof>", value="Display the hall of fame",inline=False)
+        embed.add_field(name="<.sects [search tag] >", value="Display tagged sects\n\u200b",inline=False)
         embed.add_field(name="Search Tags",value=sectCall,inline=False)
         
 
