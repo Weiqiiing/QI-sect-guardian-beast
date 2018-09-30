@@ -152,7 +152,7 @@ async def invite(ctx, user: discord.User):
 @bot.command(pass_context = True)
 async def addrole(ctx,*roleToAdd):
     roleToAdd = " ".join(roleToAdd)
-    if roleToAdd.title() in usableRoles or roleToAdd in usableRoles:
+    if roleToAdd.title() in usableRoles:
         currentRoles = [x.name for x in ctx.message.author.roles]
         if any(x in currentRoles for x in usableRoles):
             for i in range(len(usableRoles)-1):
@@ -162,7 +162,10 @@ async def addrole(ctx,*roleToAdd):
                     
                     
         await bot.say("Adding '" + str(roleToAdd) +"' to " + str(ctx.message.author.name))
-        role = discord.utils.get(ctx.message.server.roles, name=roleToAdd.title())
+	if roleToAdd.lower() == "interested in events":
+            role = discord.utils.get(ctx.message.server.roles, name="Interested in Events")
+	else:
+	    role = discord.utils.get(ctx.message.server.roles, name=roleToAdd.title())
         
         await bot.add_roles(ctx.message.server.get_member(ctx.message.author.id), role)
     else:
