@@ -19,11 +19,21 @@ sectDescription = ["Listen, ye mortal of the finite realms, for We are the Autar
 		    "NA", #GAE 
 		    "NA", #SPQR
                    ]
-					
+
+usableRoles = [
+               "Literary Snobs", "Polygamist Reader", "Habitual Book Clubber",
+               "Stockpiler", "Re-Reader", "Physical Book Loyalist", "Spoiler Lover",
+               "Nonfiction Lover", "Fiction Fanatics", "Emotional Reader", "Book Juggler",
+               "Die-Hard Reader", "Weekend Warrior Reader", "Obsessive Bibliophile",
+               "Tentative Reader", "Shy Reader", "Librocubicularist", "Grumpy Reader",
+               "Book Eater", "Seasonal Reader", "Trend Reader", "Moody Reader",
+               "Practical Reader", "Slow Reader",
+               "Interested in Events"
+                       ]
 sectXP = list() #create empty xp list
 sectLvl = list() #create empty level list 
 
-requiredXP = [ 5000,7000,8000,10000,15000,20000,25000,30000,35000,40000,45000,50000,55000] #xp required for next level
+requiredXP = [ 5000,7000,8000,10000,15000,20000,25000,30000,35000,40000,45000,50000,55000,60000] #xp required for next level
 
 def download_file(file_to,file_from):
     dbx = dropbox.Dropbox(os.environ['DROPBOX_TOKEN'])
@@ -136,6 +146,26 @@ async def invite(ctx, user: discord.User):
     await bot.send_message(ctx.message.author, f"{user} has {reply.lower()} your sect invite.")
     await bot.send_message(bot.get_channel("477777298431672321"), f"{ctx.message.author} has invited {user} to their sect. | {reply}")
     await bot.clear_reactions(msg)
+	
+	
+@bot.command(pass_context = True)
+async def addrole(ctx,*roleToAdd):
+    roleToAdd = " ".join(roleToAdd)
+    if roleToAdd.title() in usableRoles:
+        currentRoles = [x.name for x in ctx.message.author.roles]
+        if any(x in currentRoles for x in usableRoles):
+            for i in range(len(usableRoles)-1):
+                if usableRoles[i] in currentRoles:
+                    role = discord.utils.get(ctx.message.server.roles, name=usableRoles[i])
+                    await bot.remove_roles(ctx.message.server.get_member(ctx.message.author.id),role)
+                    
+                    
+        await bot.say("Adding '" + str(roleToAdd) +"' to " + str(ctx.message.author.name))
+        role = discord.utils.get(ctx.message.server.roles, name=roleToAdd.title())
+        
+        await bot.add_roles(ctx.message.server.get_member(ctx.message.author.id), role)
+    else:
+        await bot.say("That role is not available!")
 	
 	
 @bot.command(pass_context=True)
