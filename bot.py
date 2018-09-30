@@ -163,9 +163,9 @@ async def addrole(ctx,*roleToAdd):
                     
         await bot.say("Adding '" + str(roleToAdd) +"' to " + str(ctx.message.author.name))
 	if roleToAdd.lower() == "interested in events":
-            role = discord.utils.get(ctx.message.server.roles, name="Interested in Events")
+	    role = discord.utils.get(ctx.message.server.roles, name="Interested in Events")
         else:
-            role = discord.utils.get(ctx.message.server.roles, name=roleToAdd.title())
+	    role = discord.utils.get(ctx.message.server.roles, name=roleToAdd.title())
         
         await bot.add_roles(ctx.message.server.get_member(ctx.message.author.id), role)
     else:
