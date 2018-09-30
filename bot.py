@@ -156,7 +156,7 @@ async def addrole(ctx,*roleToAdd):
         currentRoles = [x.name for x in ctx.message.author.roles]
         if any(x in currentRoles for x in usableRoles):
             for i in range(len(usableRoles)-1):
-                if usableRoles[i] in currentRoles:
+                if usableRoles[i] in currentRoles and usableRoles[i] != "Interested in Events":
                     role = discord.utils.get(ctx.message.server.roles, name=usableRoles[i])
                     await bot.remove_roles(ctx.message.server.get_member(ctx.message.author.id),role)
                     
