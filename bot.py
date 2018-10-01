@@ -149,7 +149,7 @@ async def invite(ctx, user: discord.User):
     await bot.clear_reactions(msg)
 	
 	
-@bot.command(pass_context = True)
+@bot.command(pass_context = True, aliases=["iam"])
 async def addrole(ctx,*roleToAdd):
     roleToAdd = " ".join(roleToAdd)
     if roleToAdd.title() in usableRoles:
