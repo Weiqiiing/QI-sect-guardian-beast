@@ -28,8 +28,7 @@ usableRoles = [
                "Die-Hard Reader", "Weekend Warrior Reader", "Obsessive Bibliophile",
                "Tentative Reader", "Shy Reader", "Librocubicularist", "Grumpy Reader",
                "Book Eater", "Seasonal Reader", "Trend Reader", "Moody Reader",
-               "Practical Reader", "Slow Reader",
-               "Interested In Events"
+               "Practical Reader", "Slow Reader"
                        ]
 sectXP = list() #create empty xp list
 sectLvl = list() #create empty level list 
@@ -174,7 +173,7 @@ async def addrole(ctx,*roleToAdd):
 
 @bot.command(pass_context=True)
 async def roles(ctx):
-    allRoles = ["Literary Snobs", "Polygamist Reader", "Habitual Book Clubber", "Stockpiler", "Re-Reader", "Physical Book Loyalist", "Spoiler Lover", "Nonfiction Lover", "Fiction Fanatics", "Emotional Reader", "Book Juggler", "Die-Hard Reader", "Weekend Warrior Reader", "Obsessive Bibliophile", "Tentative Reader", "Shy Reader", "Librocubicularist", "Grumpy Reader", "Book Eater", "Seasonal Reader", "Trend Reader", "Moody Reader", "Practical Reader", "Slow Reader", "Interested in Events"]
+    allRoles = ["Literary Snobs", "Polygamist Reader", "Habitual Book Clubber", "Stockpiler", "Re-Reader", "Physical Book Loyalist", "Spoiler Lover", "Nonfiction Lover", "Fiction Fanatics", "Emotional Reader", "Book Juggler", "Die-Hard Reader", "Weekend Warrior Reader", "Obsessive Bibliophile", "Tentative Reader", "Shy Reader", "Librocubicularist", "Grumpy Reader", "Book Eater", "Seasonal Reader", "Trend Reader", "Moody Reader", "Practical Reader", "Slow Reader"]
     embed = discord.Embed(title=f"**There are {len(allRoles)} self-assignable roles.**", color=16711680)
     pages = {}
 
