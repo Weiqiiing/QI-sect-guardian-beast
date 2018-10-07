@@ -151,22 +151,25 @@ async def invite(ctx, user: discord.User):
 @bot.command(pass_context = True, aliases=["iam"])
 async def addrole(ctx,*roleToAdd):
     roleToAdd = " ".join(roleToAdd)
-    if roleToAdd.title() in usableRoles:
+    if roleToAdd.title() in usableRoles or roleToAdd.lower() == "none":
         currentRoles = [x.name for x in ctx.message.author.roles]
         if any(x in currentRoles for x in usableRoles):
             for i in range(len(usableRoles)-1):
                 if usableRoles[i] in currentRoles and usableRoles[i] != "Interested in Events":
                     role = discord.utils.get(ctx.message.server.roles, name=usableRoles[i])
                     await bot.remove_roles(ctx.message.server.get_member(ctx.message.author.id),role)
-                    
-                    
-        await bot.say("Adding '" + str(roleToAdd) +"' to " + str(ctx.message.author.name))
-        if roleToAdd.lower() == "interested in events":
-            role = discord.utils.get(ctx.message.server.roles, name="Interested in Events")
+        if roleToAdd.lower() == "none":
+            
+            await bot.say("Your coloured role has been removed.")
+            pass
         else:
-            role = discord.utils.get(ctx.message.server.roles, name=roleToAdd.title())
-        
-        await bot.add_roles(ctx.message.server.get_member(ctx.message.author.id), role)
+            await bot.say("Adding '" + str(roleToAdd) +"' to " + str(ctx.message.author.name))
+            if roleToAdd.lower() == "interested in events":
+                role = discord.utils.get(ctx.message.server.roles, name="Interested in Events")
+            else:
+                role = discord.utils.get(ctx.message.server.roles, name=roleToAdd.title())
+            
+            await bot.add_roles(ctx.message.server.get_member(ctx.message.author.id), role)
     else:
         await bot.say("That role is not available!")
 	
