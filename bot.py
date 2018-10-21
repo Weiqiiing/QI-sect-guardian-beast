@@ -19,7 +19,7 @@ sectDescription = ["Listen, ye mortal of the finite realms, for We are the Autar
 		    "NA", #Lords
 		    "NA", #GAE 
 		    "NA", #SPQR
-		    "NA", #QQ
+		    "A spiritu dominatus,\nDomine, libra nos,\nFrom the temptation and evil,\nMyriad shall deliver us.", #Cult
                    ]
 
 usableRoles = [
