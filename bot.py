@@ -131,7 +131,7 @@ async def invite(ctx, user: discord.User):
             for i in range(len(sectTags)):
                 if sectTags[i] in ctx.message.author.display_name:
                     try:
-                        if sectTags[i] == "Lord":await bot.change_nickname(user, sectTags[i]+" "+user.name)
+                        if sectTags[i] == "Lord" or sectTags[i] == "⧹Cult⧸" :await bot.change_nickname(user, sectTags[i]+" "+user.name)
                         else:await bot.change_nickname(user, user.name+" "+sectTags[i])
                         break
                     except Exception:           
