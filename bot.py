@@ -111,9 +111,7 @@ async def millie(ctx):
 	
 @bot.command(pass_context=True)
 async def invite(ctx, user: discord.User):
-    jake = await bot.get_user_info("201401898941677577")
-
-
+	
     inviteMsg = f"Hey {user.mention}! {ctx.message.author.mention} has invited you to join their sect. \n\n**Status: Pending**"
     msg = await bot.send_message(ctx.message.channel,
                                  inviteMsg)
@@ -134,7 +132,7 @@ async def invite(ctx, user: discord.User):
                         else:await bot.change_nickname(user, user.name+" "+sectTags[i])
                         break
                     except Exception:           
-                        await bot.send_message(jake, f"{user} has accepted {ctx.message.author}'s invite to their sect, however {user.name} is too long for a tag")
+                        await bot.send_message(ctx.message.channel, f"{user}, your nickname is too long for the tag to be added. Please contact a mod to have it changed.")
                         
         elif reaction.emoji == "❌":
             reply = "Rejected"
