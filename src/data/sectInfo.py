@@ -1,24 +1,39 @@
 sectList = [
-            "Autarch Flipping", "Explosion",
-            "Blank", "Thousand and One Petals",
-            "Debauchery Tea Party", "Sort Post A Massege",
-            "Rising Peak", "NOT A GAE",
-            "The Church", "Constellation"
+            "Autarch Flipping", 
+            "Explosion",
+            "Blank", 
+            "Thousand and One Petals",
+            "Debauchery Tea Party", 
+            "Sort Post A Massege",
+            "Rising Peak", 
+            "NOT A GAE",
+            "The Church", 
+            "Constellation"
             ]
 
-sectCall = ["ELON", "Exp",
-            "Blank", "PETALS",
-            "TeaParty", "spam",
-            "Lord", "gae",
-            "church", "stellar"
+sectCall = ["ELON", 
+            "Exp",
+            "Blank", 
+            "PETALS",
+            "TeaParty", 
+            "spam",
+            "Lord", 
+            "gae",
+            "church", 
+            "stellar"
             ] 
 
 sectTags = [
-            "「 ELON 」", "Explosion",
-            "『　　』", "《 PETALS 》",
-            "[TeaParty]", "[spam]",
-            "Lord", "【GAE】",
-            "✞ CHURCH ✞", "〈Stellar〉"
+            "「 ELON 」", 
+            "Explosion",
+            "『　　』", 
+            "《 PETALS 》",
+            "[TeaParty]", 
+            "[spam]",
+            "Lord", 
+            "【GAE】",
+            "✞ CHURCH ✞", 
+            "〈Stellar〉"
             ]  
 
 sectOwner = ["Perpetual Phoenix",
