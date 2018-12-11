@@ -109,7 +109,7 @@ class Sect:
             embed = discord.Embed(color=0x896fc4)
             embed.set_author(name="Leaderboard")
 
-            for i in range(10):
+            for i in range(len(tempName)):
                 embed.add_field(name="#" + str(i + 1) + " " + tempName[i] + " [" + tempTag[i] + "]", value=str(
                     tempXPC[i]) + " / " + str(requiredXP[tempLvl[i]]) + " (" + str(tempXP[i]) + ")", inline=False)
 
