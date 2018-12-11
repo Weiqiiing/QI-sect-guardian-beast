@@ -70,10 +70,11 @@ class XP:
 
             if a.second == 0:
                 secondChecker += 1
-                print(secondChecker, "/1")
-                if secondChecker == 1:
+                print(secondChecker, "/5")
+                if secondChecker == 5:
                     upload_file("levels.csv", "/levels.csv")
                     upload_file("sectLevels.csv", "/sectLevels.csv")
+                    secondChecker = 0
             await asyncio.sleep(1)
 
     async def on_ready(self):
