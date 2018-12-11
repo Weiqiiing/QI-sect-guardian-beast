@@ -50,7 +50,6 @@ class Sect:
 
     @commands.command(pass_context=True)
     async def sects(self, ctx, arg="lb"):
-        print(len(sectList))
         if arg.lower() not in ["l", "lb", "h", "help", "a", "hof"]:
             for sects in sectCall:  # check if arg in sects
                 if arg.lower() == sects.lower():  # make sure both compared are lowercase
@@ -93,6 +92,7 @@ class Sect:
 
         elif arg in ["l", "lb"]:
             tempName = list(sectList)
+            print(len(tempName))
             tempTag = list(sectCall)
             tempXPC = list(self.sectXP)
             tempXP = list(self.sectXP)
@@ -109,7 +109,7 @@ class Sect:
             embed = discord.Embed(color=0x896fc4)
             embed.set_author(name="Leaderboard")
 
-            for i in range(len(tempName)):
+            for i in range(10):
                 embed.add_field(name="#" + str(i + 1) + " " + tempName[i] + " [" + tempTag[i] + "]", value=str(
                     tempXPC[i]) + " / " + str(requiredXP[tempLvl[i]]) + " (" + str(tempXP[i]) + ")", inline=False)
 
