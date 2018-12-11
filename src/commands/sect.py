@@ -50,6 +50,7 @@ class Sect:
 
     @commands.command(pass_context=True)
     async def sects(self, ctx, arg="lb"):
+        print(len(sectList))
         if arg.lower() not in ["l", "lb", "h", "help", "a", "hof"]:
             for sects in sectCall:  # check if arg in sects
                 if arg.lower() == sects.lower():  # make sure both compared are lowercase
