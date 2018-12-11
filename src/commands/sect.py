@@ -92,7 +92,6 @@ class Sect:
 
         elif arg in ["l", "lb"]:
             tempName = list(sectList)
-            print(len(tempName))
             tempTag = list(sectCall)
             tempXPC = list(self.sectXP)
             tempXP = list(self.sectXP)
@@ -105,6 +104,7 @@ class Sect:
 
             tempXP, tempName, tempXPC, tempLvl, tempTag, tempDesc = zip(
                 *sorted(zip(tempXP, tempName, tempXPC, tempLvl, tempTag, tempDesc), reverse=True))
+            print(len(tempName))        
 
             embed = discord.Embed(color=0x896fc4)
             embed.set_author(name="Leaderboard")
