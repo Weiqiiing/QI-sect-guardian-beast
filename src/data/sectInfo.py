@@ -36,7 +36,7 @@ sectTags = [
             "【GAE】",
             "✞ CHURCH ✞", 
             "〈Stellar〉",
-            "Nyaa~"
+            "(=🝦 ﻌ 🝦=)"
             ]  
 
 sectOwner = ["Perpetual Phoenix",
