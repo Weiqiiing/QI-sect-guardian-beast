@@ -8,7 +8,8 @@ sectList = [
             "Rising Peak", 
             "NOT A GAE",
             "The Church", 
-            "Constellation"
+            "Constellation",
+            "Nyaa~
             ]
 
 sectCall = ["ELON", 
@@ -20,7 +21,8 @@ sectCall = ["ELON",
             "Lord", 
             "gae",
             "church", 
-            "stellar"
+            "stellar",
+            "nyaa"
             ] 
 
 sectTags = [
@@ -33,7 +35,8 @@ sectTags = [
             "Lord", 
             "【GAE】",
             "✞ CHURCH ✞", 
-            "〈Stellar〉"
+            "〈Stellar〉",
+            "Nyaa~"
             ]  
 
 sectOwner = ["Perpetual Phoenix",
@@ -45,7 +48,9 @@ sectOwner = ["Perpetual Phoenix",
              "Modsan",
              "WitheringLeaf",
              "Oer_",
-             "VeeVee"] #Owner of Sect
+             "VeeVee",
+             "Lemonfairy",
+            ] #Owner of Sect
 
 sectDescription = [
                     "Listen, ye mortal of the finite realms, for We are the Autarchs that were present at the beginning, and shall be present at the end! We are the Holy Inheritors of Elon, transcendent of all other races! We have seen generations trickle by, in the river of history, yet remain unfettered by time! Those who proclaim themselves as people of power are nothing to Us, for there is no apex past Us! A force that rivals the Heavens! A force that has become the Heavens! Who dares claim to be our equal‽ ",  #Elon
@@ -57,7 +62,8 @@ sectDescription = [
                     "NA", #Lords
                     "NA", #GAE 
                     "Quos deus vult perdere dementat prius", #Church
-                    "NA" #Stellar
+                    "NA", #Stellar
+                    "NA", #Nyaa
                    ]
 requiredXP = [5000, 7000, 8000, 10000, 15000, 20000, 25000, 30000,
               35000, 40000, 45000, 50000, 55000, 60000]  # xp required for next level
