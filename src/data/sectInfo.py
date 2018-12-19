@@ -9,7 +9,7 @@ sectList = [
             "NOT A GAE",
             "The Church", 
             "Constellation",
-            "Nyaa~
+            "Nyaa~"
             ]
 
 sectCall = ["ELON", 
