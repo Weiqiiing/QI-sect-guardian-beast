@@ -14,7 +14,7 @@ class Roles:
 		if roleToAdd.title() in usableRoles or roleToAdd.lower() == "none":
 			currentRoles = [x.name for x in ctx.message.author.roles]
 			if any(x in currentRoles for x in usableRoles):
-				for i in range(len(usableRoles) - 1):
+				for i in range(len(usableRoles)):
 					if usableRoles[i] in currentRoles and usableRoles[i] != "Interested in Events":
 						role = discord.utils.get(
 							ctx.message.server.roles, name=usableRoles[i])
