@@ -36,7 +36,7 @@ class Roles:
 
 	@commands.command(pass_context=True)
 	async def roles(self, ctx):
-		allRoles = usableRoles
+		allRoles = usableRoles[:len(usableRoles)]
 		embed = discord.Embed(
 			title=f"**There are {len(allRoles)} self-assignable roles.**", color=16711680)
 		pages = {}
