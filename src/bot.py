@@ -11,7 +11,7 @@ bot = commands.Bot(command_prefix=os.environ['BOT_PREFIX'])
 config.init()
 
 startup_extensions = ["commands.fun", "commands.sect",
-                      "utils.events", "utils.roles", "XP.xp"]
+                      "utils.events", "utils.roles", "XP.xp", "utils.errorhandler"]
 
 if __name__ == "__main__":
     for extension in startup_extensions:
