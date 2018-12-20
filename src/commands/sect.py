@@ -103,8 +103,7 @@ class Sect:
                     tempXP[xptotal] += requiredXP[getxp]
 
             tempXP, tempName, tempXPC, tempLvl, tempTag, tempDesc = zip(
-                *sorted(zip(tempXP, tempName, tempXPC, tempLvl, tempTag, tempDesc), reverse=True))
-            print(len(tempName))        
+                *sorted(zip(tempXP, tempName, tempXPC, tempLvl, tempTag, tempDesc), reverse=True))     
 
             embed = discord.Embed(color=0x896fc4)
             embed.set_author(name="Leaderboard")
