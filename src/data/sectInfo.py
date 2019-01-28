@@ -6,7 +6,7 @@ sectList = [
             "Debauchery Tea Party", 
             "Sort Post A Massege",
             "Rising Peak", 
-            "NOT A GAE",
+            "God-tier Assassination Experts",
             "The Church", 
             "Constellation",
             "Nyaa~"
