@@ -34,8 +34,8 @@ class Sect:
                             else:
                                 await self.bot.change_nickname(user, user.name + " " + sectTags[i])
                             break
-                        except Exception:
-                            await self.bot.send_message(ctx.message.channel, f"{user}, your nickname is too long for the tag to be added. Please contact a mod to have it changed.")
+                        except Exception as caughtError:
+                            await self.bot.send_message(ctx.message.channel, "An error has occured,\n",caughtError,"\nPlease ping a mod")
 
             elif reaction.emoji == "❌":
                 reply = "Rejected"
