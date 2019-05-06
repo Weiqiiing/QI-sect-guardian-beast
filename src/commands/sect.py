@@ -99,7 +99,7 @@ class Sect:
             tempLvl = list(self.sectLvl)
             tempDesc = list(sectDescription)
 
-            for xptotal in range(len(self.sectXP)):
+            for xptotal in range(len(self.sectXP)-1):
                 for getxp in range(self.sectLvl[xptotal]):
                     tempXP[xptotal] += requiredXP[getxp]
 
@@ -109,7 +109,7 @@ class Sect:
             embed = discord.Embed(color=0x896fc4)
             embed.set_author(name="Leaderboard")
 
-            for i in range(len(tempName)):
+            for i in range(len(tempName)-1):
                 embed.add_field(name="#" + str(i + 1) + " " + tempName[i] + " [" + tempTag[i] + "]", value=str(
                     tempXPC[i]) + " / " + str(requiredXP[tempLvl[i]]) + " (" + str(tempXP[i]) + ")", inline=False)
 
